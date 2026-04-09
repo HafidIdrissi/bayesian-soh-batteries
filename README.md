@@ -2,8 +2,7 @@
 
 **Physics-Informed Data-Driven approach to Battery State-of-Health prediction**  
 *Preparatory research work — CIFRE PhD candidate | Stellantis / CentraleSupélec*  
-**Author: Hafid IDRISSI** · [LinkedIn](https://www.linkedin.com/in/hafid-idrissi/) · [ORCID: 0009-0000-4326-1487](https://orcid.org/0009-0000-4326-1487)
-
+**Author: Hafid IDRISSI** · [ORCID: 0009-0000-4326-1487](https://orcid.org/0009-0000-4326-1487)
 ---
 
 ## Scientific Context
