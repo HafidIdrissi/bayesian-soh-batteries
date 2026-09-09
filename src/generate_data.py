@@ -11,10 +11,9 @@ where k is the cycle number and parameters are drawn from
 a hierarchical distribution to model unit-to-unit variability.
 """
 
+import os
 import numpy as np
 import pandas as pd
-
-np.random.seed(42)
 
 N_BATTERIES = 8
 N_CYCLES = 150
@@ -42,14 +41,23 @@ def simulate_battery(battery_id, seed=None):
     })
     return df, {"a": a, "b": b, "c": c, "d": d, "noise_std": noise_std}
 
-all_data = []
-true_params = {}
-for i in range(N_BATTERIES):
-    df, params = simulate_battery(i + 1, seed=i * 7)
-    all_data.append(df)
-    true_params[f"B{i+1:04d}"] = params
 
-dataset = pd.concat(all_data, ignore_index=True)
-import os; os.makedirs("data", exist_ok=True); dataset.to_csv(os.path.join("data", "battery_degradation.csv"), index=False)
-print(f"Dataset saved: {len(dataset)} rows, {N_BATTERIES} batteries, {N_CYCLES} cycles each.")
-print(dataset.head(10))
+def main():
+    np.random.seed(42)
+    all_data = []
+    true_params = {}
+    for i in range(N_BATTERIES):
+        df, params = simulate_battery(i + 1, seed=i * 7)
+        all_data.append(df)
+        true_params[f"B{i+1:04d}"] = params
+
+    dataset = pd.concat(all_data, ignore_index=True)
+    os.makedirs("data", exist_ok=True)
+    dataset.to_csv(os.path.join("data", "battery_degradation.csv"), index=False)
+    print(f"Dataset saved: {len(dataset)} rows, {N_BATTERIES} batteries, {N_CYCLES} cycles each.")
+    print(dataset.head(10))
+    return dataset, true_params
+
+
+if __name__ == "__main__":
+    main()
